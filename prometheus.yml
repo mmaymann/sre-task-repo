@@ -34,7 +34,7 @@ serverFiles:
             description: The persistent volume {{ $labels.persistentvolume }} has status {{ $labels.phase }}
             summary: PersistentVolume is having issues with provisioning.
         - alert: KubePodCrashLooping
-          expr: rate(kube_pod_container_status_restarts_total{job="kubernetes-service-endpoints",namespace=~".*"}[5m])  60  5 > 0
+          expr: rate(kube_pod_container_status_restarts_total{job="kubernetes-service-endpoints",namespace=~".*"}[5m]) * 60 * 5 > 0
           for: 2m
           labels:
             severity: warning
